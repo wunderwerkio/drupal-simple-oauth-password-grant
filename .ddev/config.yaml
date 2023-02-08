@@ -20,13 +20,14 @@ web_environment:
   - COMPOSER=composer.spoons.json
   - WEB_ROOT=web
   - NONINTERACTIVE=1
+  - COMPOSER_NO_INTERACTION=1
   - WEB_PORT=9000
   - SIMPLETEST_BASE_URL=http://localhost
   - SIMPLETEST_DB=sqlite://localhost/sites/default/files/.sqlite
 nodejs_version: "16"
 hooks:
   post-start:
-    - exec: "rm .composer-plugin.env || true"
+    - exec: "rm .composer-plugin.env composer.spoons.json composer.spoons.lock || true"
     - exec: "bash <(curl -s https://gitlab.com/drupalspoons/composer-plugin/-/raw/master/bin/setup)"
     - exec: "drush status"
 

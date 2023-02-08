@@ -2,12 +2,14 @@
 
 # Keys
 declare -a values=(
+  "php8.0-drupal9"
   "php8.1-drupal9"
   "php8.1-drupal10"
 )
 
 # Labels
 declare -a labels=(
+  "PHP 8.0 | Drupal 9"
   "PHP 8.1 | Drupal 9"
   "PHP 8.1 | Drupal 10"
 )
@@ -51,6 +53,9 @@ confFile=".ddev/config.env.yaml"
 
 # Switch case
 case $selectedValue in
+  "php8.0-drupal9")
+    printf "php_version: \"8.0\"\nweb_environment:\n  - DRUPAL_CORE_CONSTRAINT=^9" > $confFile
+    ;;
   "php8.1-drupal9")
     if [ -f "$confFile" ]; then
       rm $confFile
