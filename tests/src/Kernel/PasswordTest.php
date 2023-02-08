@@ -79,4 +79,26 @@ class PasswordTest extends AuthorizedRequestBase {
     $this->assertSame('invalid_grant', $parsed_response['error']);
   }
 
+  /**
+   * Test the password grant with an inactive user.
+   */
+  public function testPasswordGrantWithInactiveUser(): void {
+    $this->user->set('status', 0)->save();
+
+    $parameters = [
+      'grant_type' => 'password',
+      'client_id' => $this->client->getClientId(),
+      'client_secret' => $this->clientSecret,
+      'username' => $this->user->getAccountName(),
+      'password' => $this->password,
+    ];
+
+    $request = Request::create($this->url->toString(), 'POST', $parameters);
+    $response = $this->httpKernel->handle($request);
+
+    $this->assertEquals(400, $response->getStatusCode());
+    $parsed_response = Json::decode((string) $response->getContent());
+    $this->assertSame('invalid_grant', $parsed_response['error']);
+  }
+
 }
