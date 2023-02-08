@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Keys
+declare -a values=(
+  "php8.1-drupal9"
+  "php8.1-drupal10"
+)
+
+# Labels
+declare -a labels=(
+  "PHP 8.1 | Drupal 9"
+  "PHP 8.1 | Drupal 10"
+)
+
+echo "Available configurations"
+echo "-----------------------"
+
+# Loop through array with a counter
+i=0
+
+for config in "${labels[@]}"; do
+  echo "[$i] $config"
+  ((i++))
+done
+
+echo ""
+
+# Ask user for input
+read -p "Select configuration: " num
+
+echo ""
+
+# Check if input is a number
+re='^[0-9]+$'
+if ! [[ $num =~ $re ]] ; then
+   echo "error: Not a number" >&2; exit 1
+fi
+
+# Check if input is within array bounds
+if [ $num -lt 0 ] || [ $num -ge ${#values[@]} ]; then
+  echo "error: Out of bounds" >&2; exit 1
+fi
+
+# Set selected configuration
+selectedValue=${values[$num]}
+selectedLabel=${labels[$num]}
+
+echo "Selected configuration: $selectedLabel"
+
+confFile=".ddev/config.env.yaml"
+
+# Switch case
+case $selectedValue in
+  "php8.1-drupal9")
+    if [ -f "$confFile" ]; then
+      rm $confFile
+    fi
+    ;;
+  "php8.1-drupal10")
+    printf "web_environment:\n  - DRUPAL_CORE_CONSTRAINT=^10" > $confFile
+    ;;
+  *)
+    echo "error: Unknown configuration" >&2; exit 1
+    ;;
+esac
+
+ddev start
