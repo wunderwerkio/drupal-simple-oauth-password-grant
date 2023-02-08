@@ -1,0 +1,13 @@
+{
+    "name": "drupal/simple_oauth_password_grant",
+    "description": "Provides the password grant for the simple_oauth module",
+    "type": "drupal-module",
+    "require": {
+        "drupal/simple_oauth": "^6",
+        "php": ">=8.1"
+    },
+    "require-dev": {
+      "phpspec/prophecy-phpunit": "^2"
+    },
+    "license": "GPL-2.0-or-later"
+}
