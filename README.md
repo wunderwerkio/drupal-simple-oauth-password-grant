@@ -1,4 +1,4 @@
-# Simple OAuth Password Grant
+# Simple OAuth Password Grant [![Lint & Test](https://github.com/wunderwerkio/drupal-simple-oauth-password-grant/actions/workflows/main.yml/badge.svg)](https://github.com/wunderwerkio/drupal-simple-oauth-password-grant/actions/workflows/main.yml)
 
 This module re-implements the `PasswordGrant` for the `simple_oauth` module.
 For more information about this repository, visit the project page at [https://www.drupal.org/project/simple_oauth_password_grant](https://www.drupal.org/project/simple_oauth_password_grant)
@@ -18,7 +18,7 @@ You can then obtain an access token by requesting it with the following payload:
 }
 ```
 
-**Important**  
+**Important**
 The username can either be the Drupal username, or the Drupal user's email address!
 
 ## Testing
@@ -34,7 +34,7 @@ Run the following commands in the project root:
 ddev start
 ```
 
-To change the drupal version, use 
+To change the drupal version, use
 
 ```sh
 ddev change-env
