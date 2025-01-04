@@ -1,3 +1,10 @@
+# Important Notice
+
+The version control was moved to Drupal's GitLab instance!  
+See https://www.drupal.org/project/simple_oauth_password_grant for more info!
+
+---
+
 # Simple OAuth Password Grant [![Lint & Test](https://github.com/wunderwerkio/drupal-simple-oauth-password-grant/actions/workflows/main.yml/badge.svg)](https://github.com/wunderwerkio/drupal-simple-oauth-password-grant/actions/workflows/main.yml)
 
 This module re-implements the `PasswordGrant` for the `simple_oauth` module.
